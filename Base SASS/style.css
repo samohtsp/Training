@@ -1,0 +1,41 @@
+body
+{
+    height: 100%;
+    width: 100%;
+    background: hsl(213, 33%, 17%); /* Le fond de la page sera noir */
+    color: white; /* Le texte de la page sera blanc */
+}
+
+.slider-container {
+    /* all pictures should be the same size as this value. */
+    max-width: 1050px;
+    margin: auto;
+    padding:0 1em;
+    background: hsl(155, 44%, 38%);
+    overflow: hidden;
+  }
+  
+.slider {
+    position: relative;
+    background: hsl(44, 48%, 41%);
+    padding-left: 0;
+    margin: 0;
+    height: 200px;
+    overflow: hidden;
+    animation: slide 20s linear infinite;
+    animation-name: slide;
+    animation-duration: 20s;
+    animation-iteration-count: 1, infinite;
+    animation-delay: 0s, 20s;
+    transform: translateX(0%);
+    transform: translateX(100%);
+}
+  
+
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    7.5%, 33% { transform: translateX(0); }
+    40.5% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+  }
+  
