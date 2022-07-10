@@ -4,20 +4,19 @@ const nav = document.querySelector('.nav');
 const menuNav = document.querySelector('.menu-nav');
 const navItems = document.querySelectorAll('.menu-nav__item');
 
-
-let showMenu = false;
+let showMenu = true;
 
 menuBtn.addEventListener('click',toggleMenu);
 
 function toggleMenu(){
-    if(!showMenu){
+    if(showMenu){
         hamburger.classList.add('open');
         nav.classList.add('open');
         menuNav.classList.add('open');
         navItems.forEach(item => {
            item.classList.add('open'); 
         });
-        showMenu= true;
+        showMenu= false;
     }
     else{
         hamburger.classList.remove('open');
@@ -26,6 +25,6 @@ function toggleMenu(){
         navItems.forEach(item => {
             item.classList.remove('open'); 
          });
-        showMenu= false;
+        showMenu= true;
     }
 }

@@ -38,7 +38,7 @@ main{
         position: fixed;
         bottom: 1rem;
         left: 1rem;
-
+        font-size: 30px;
         a{
             @include transition-ease;
             padding: 0.4rem;

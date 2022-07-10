@@ -1,0 +1,16 @@
+{
+  "name": "minecraft-quick-starter",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "stats.js": "^0.17.0",
+    "three": "^0.136.0"
+  }
+}
