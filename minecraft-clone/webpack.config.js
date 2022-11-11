@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 const PATHS = {
@@ -9,7 +10,6 @@ const PATHS = {
 
 module.exports = {
   //Main
-  //context: path.resolve(__dirname, 'src'),
   resolve: {
     fallback: {
       fs: false,
@@ -21,10 +21,6 @@ module.exports = {
   entry: {
     app: {
       import: ["./src/js/index.js", "./src/js/main.js"],
-      dependOn: "shared",
-    },
-    physics: {
-      import: ["./src/js/ammo.js"],
       dependOn: "shared",
     },
     minecraft: {
@@ -51,7 +47,7 @@ module.exports = {
   },
 
   output: {
-    filename: "[name].bundle.js",
+    filename: "js/[name].bundle.js",
     path: PATHS.build,
     clean: true,
     publicPath: "/",
@@ -74,6 +70,7 @@ module.exports = {
   //Plugins
   plugins: [
     new NodePolyfillPlugin(),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       title: "Minecraft clone",
       filename: "./index.html",
@@ -88,14 +85,21 @@ module.exports = {
         test: /\.html$/i,
         loader: "html-loader",
         generator: {
-          filename: "file?name=[name].[ext]",
+          filename: (content) => {
+            return content.filename.replace("src/", "");
+          },
         },
       },
 
       //css
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        generator: {
+          filename: (content) => {
+            return content.filename.replace("src/", "");
+          },
+        },
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
 
       //images

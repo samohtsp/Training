@@ -2,6 +2,8 @@ import * as THREE from "three";
 import * as BLK from "./Block.js";
 import * as cm from "./Camera.js";
 import * as ct from "./Controls.js";
+import * as CANNON from "cannon-es";
+import * as mn from "./main";
 
 const camera = cm.camera;
 
@@ -99,17 +101,23 @@ export function compareLandscapes(diplayableLandscape) {
 }
 
 export function createLandscape(scene) {
-  //console.log('in landscape')
+  console.log("in landscape");
   for (var xIndex = 0; xIndex < 10; xIndex++) {
     landscape[xIndex] = Array();
     for (var zIndex = 0; zIndex < 10; zIndex++) {
       const blocks = new BLK.Blocks();
-      var block = blocks.grass.mesh;
-      var z = zIndex;
-      var x = xIndex;
-      var y = 0;
+      const block = blocks.grass.mesh;
+      const z = zIndex;
+      const x = xIndex;
+      const y = 0;
       block.position.set(x, y, z);
-      landscape[xIndex][zIndex] = block;
+      const blockShape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
+      const blockBody = new CANNON.Body({ mass: 0 });
+      blockBody.position.set(x, y, z);
+      mn.meshes.push(block);
+      blockBody.addShape(blockShape);
+      mn.bodies.push(blockBody);
+      mn.world.addBody(blockBody);
       scene.add(block);
     }
   }
@@ -123,58 +131,4 @@ export function updateLandscape() {
   //var blocks = compareLandscapes(printableLandscape)
   //removeBlocksFromScene(scene, blocks.rmList)
   //addBlocksToScene(scene, blocks.addList)
-}
-
-function getUnion(a, b) {
-  var union = new Set();
-  var alength = a.length;
-  var blength = b.length;
-
-  for (let i = 0; i < alength; i++) {
-    union.add(a[i]);
-  }
-  for (let i = 0; i < blength; i++) {
-    union.add(b[i]);
-  }
-  return Array.from(union);
-}
-
-function getIntersection(a, b) {
-  var intersection = new Set();
-  var alength = a.length;
-  var blength = b.length;
-
-  if (alength < blength) {
-    var tempo = b;
-    b = a;
-    a = tempo;
-  }
-  for (let i = 0; i < alength; i++) {
-    for (let j = 0; j < blength; j++) {
-      if (a[i] == b[j]) {
-        intersection.add(a[i]);
-      }
-    }
-  }
-  return Array.from(intersection);
-}
-
-function getExclusionA(a, b) {
-  var exclusionA = new Set(a);
-  var alength = a.length;
-  var blength = b.length;
-
-  if (alength < blength) {
-    var tempo = b;
-    b = a;
-    a = tempo;
-  }
-  for (let i = 0; i < alength; i++) {
-    for (let j = 0; j < blength; j++) {
-      if (a[i] == b[j]) {
-        exclusionA.delete(a[i]);
-      }
-    }
-  }
-  return Array.from(exclusionA);
 }

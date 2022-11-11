@@ -1,4 +1,6 @@
 import "../css/main.css";
+import * as THREE from "three";
+import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 
 export class Controls {
   constructor({ player }) {
@@ -15,6 +17,10 @@ export class Controls {
       Digit3: "texture4",
       Digit4: "texture5",
     };
+    this.fpv = new PointerLockControls(
+      this.player.camera,
+      document.getElementById("bg")
+    );
     this.initControls();
   }
 
@@ -24,6 +30,19 @@ export class Controls {
     });
     document.addEventListener("keyup", (event) => {
       this.handleKeyUp(event);
+    });
+    document.addEventListener("click", () => {
+      console.log("click");
+      this.fpv.lock();
+    });
+    this.fpv.addEventListener("lock", () => {
+      //menu.style.display = "none";
+      console.log("locked");
+    });
+
+    this.fpv.addEventListener("unlock", () => {
+      //menu.style.display = "block";
+      console.log("unlocked");
     });
   }
 

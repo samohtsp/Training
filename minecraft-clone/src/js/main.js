@@ -19,31 +19,27 @@ const clock = new THREE.Clock();
 let stats;
 
 // Minecraft variables
-let blocks = new BLK.Blocks();
-let player = new PLR.Player({ camera: camera });
-let controls = new ct.Controls({ player: player });
+let blocks;
+let player;
+let controls;
 
 // cannon.js variables
-let world;
+export let world;
 
 // To be synced
-const meshes = [];
-const bodies = [];
+export const meshes = [];
+export const bodies = [];
 
 initThree();
-renderInfo();
 initCannon();
+initMinecraft();
+renderInfo();
 GameLoop();
 
 function initThree() {
   stats = new Stats();
   stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.body.appendChild(stats.dom);
-
-  meshes.push(player.mesh);
-  scene.add(player.mesh);
-
-  ld.createLandscape(scene);
+  //document.body.appendChild(stats.dom);
 }
 
 function initCannon() {
@@ -52,17 +48,24 @@ function initCannon() {
   world.gravity.set(0, -9.81, 0);
 
   // Floor
-  const floorShape = new CANNON.Plane();
+  /*const floorShape = new CANNON.Plane();
   const floorBody = new CANNON.Body({ mass: 0 });
   floorBody.addShape(floorShape);
-  floorBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
-  world.addBody(floorBody);
+  world.addBody(floorBody);*/
+}
 
+function initMinecraft() {
+  ld.createLandscape(scene);
+
+  blocks = new BLK.Blocks();
+  player = new PLR.Player({ camera: camera });
+  controls = new ct.Controls({ player: player });
   player.playerBody.position.set(6, 8, 6);
   bodies.push(player.playerBody);
   world.addBody(player.playerBody);
+  meshes.push(player.mesh);
+  scene.add(player.mesh);
 }
-
 function renderInfo() {
   console.log("Scene polycount:", renderer.info.render.triangles);
   console.log("Active Drawcalls:", renderer.info.render.calls);

@@ -1,24 +1,42 @@
-@import 'config';
+@import "config";
 
-@import 'menu';
+@import "menu";
 
 //@import 'responsive';
-canvas{
-    position: fixed;
-    background-color: blue;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+canvas {
+  position: fixed;
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
-body{
-    background: $primary-color;
-    color: set-text-color($primary-color);
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1;
+body {
+  background: $primary-color;
+  color: set-text-color($primary-color);
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1;
+}
+.absolute {
+  position: absolute;
+}
+.centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
 }
 
+.cursor {
+  opacity: 0.4;
+  content: " ";
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  background-color: rgb(255, 255, 255);
+}
 
 //h1, h2, h3{
 //    font-weight: 400;

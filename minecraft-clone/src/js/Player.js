@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
-import { forEach } from "lodash";
 
 export class Player {
   //var moveBackward, moveForward, moveRight, moveLeft, jump = useKeyboard()
@@ -29,7 +28,7 @@ export class Player {
     this.mass = 1;
     this.movementSpeed = 2.5;
     this.jumpForce = 3;
-    this.playerShape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
+    this.playerShape = new CANNON.Sphere(1);
     this.playerBody = new CANNON.Body({ mass: this.mass });
     this.playerBody.addShape(this.playerShape);
 
@@ -44,12 +43,6 @@ export class Player {
     this.useAction();
   }
   useAction() {
-    Object.keys(this.actionMap).forEach((action) => {
-      if (this.actionMap[action]) {
-        console.log("useAction " + action);
-        //this.setMovement(action);
-      }
-    });
     if (this.actionMap["jump"] && Math.abs(this.playerBody.velocity.y) < 0.05) {
       this.playerBody.velocity.set(0, this.jumpForce, 0);
     }
@@ -68,11 +61,11 @@ export class Player {
       0,
       0
     );
-    direction
-      .subVectors(frontVector, sideVector)
-      .normalize()
-      .multiplyScalar(this.movementSpeed)
-      .applyEuler(this.camera.rotation);
+
+    direction.subVectors(frontVector, sideVector);
+    direction.normalize();
+    direction.multiplyScalar(this.movementSpeed);
+    direction.applyEuler(this.camera.rotation);
 
     this.playerBody.velocity.x = direction.x;
     this.playerBody.velocity.z = direction.z;
