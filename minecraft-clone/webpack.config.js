@@ -84,11 +84,6 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: "html-loader",
-        generator: {
-          filename: (content) => {
-            return content.filename.replace("src/", "");
-          },
-        },
       },
 
       //css

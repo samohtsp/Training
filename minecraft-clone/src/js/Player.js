@@ -28,7 +28,7 @@ export class Player {
     this.mass = 1;
     this.movementSpeed = 2.5;
     this.jumpForce = 3;
-    this.playerShape = new CANNON.Sphere(1);
+    this.playerShape = new CANNON.Sphere(0.5);
     this.playerBody = new CANNON.Body({ mass: this.mass });
     this.playerBody.addShape(this.playerShape);
 
@@ -67,7 +67,10 @@ export class Player {
     direction.multiplyScalar(this.movementSpeed);
     direction.applyEuler(this.camera.rotation);
 
-    this.playerBody.velocity.x = direction.x;
-    this.playerBody.velocity.z = direction.z;
+    this.playerBody.velocity.set(
+      direction.x,
+      this.playerBody.velocity.y,
+      direction.z
+    );
   }
 }

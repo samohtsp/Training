@@ -11,8 +11,19 @@ function canvas() {
 
 function cursor() {
   const cursor = document.createElement("div");
+  const HorBar = document.createElement("div");
+  const VertTopBar = document.createElement("div");
+  const VertBotBar = document.createElement("div");
+
   cursor.className = "absolute centered cursor";
-  cursor.textContent = " ";
+  VertTopBar.className = "bar vertical top";
+  VertBotBar.className = "bar vertical bot";
+  HorBar.className = "bar horizontal";
+
+  cursor.appendChild(VertTopBar);
+  cursor.appendChild(VertBotBar);
+  cursor.appendChild(HorBar);
+
   return cursor;
 }
 
