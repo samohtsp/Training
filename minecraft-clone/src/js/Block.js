@@ -1,14 +1,77 @@
 import * as THREE from "three";
 
-//import * as FS from 'fs';
-
 export class Block {
-  constructor({ blockType, materialArray, mesh, count, biomes }) {
-    this.blockType = blockType;
-    this.materialArray = materialArray;
-    this.mesh = mesh;
-    this.count = count;
-    this.biomes = biomes;
+  constructor({ blockType }) {
+    const blockGoem = new THREE.BoxGeometry(1, 1, 1);
+    const blockMaterials = new BlockMaterials();
+    const renderDistance = 4;
+    const chunkSize = 10;
+    const depth = 5;
+
+    this.blockGoem = blockGoem;
+    this.blockMaterials = blockMaterials;
+    this.renderDistance = renderDistance;
+    this.chunkSize = chunkSize;
+    this.depth = depth;
+
+    if (blockType == "grass") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.grassMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.grassMat);
+
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
+    if (blockType == "dirt") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.dirtMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.dirtMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
+    if (blockType == "cobblestone") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.cobblestoneMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.cobblestoneMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains", "desert"];
+    }
+
+    if (blockType == "oakLog") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.oakLogMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.oakLogMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
+    if (blockType == "oakLeaves") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.oakLeavesMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.oakLeavesMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
+    if (blockType == "sand") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.sandMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.sandMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
+    if (blockType == "water") {
+      this.blockType = blockType;
+      this.materialArray = blockMaterials.waterMat;
+      this.mesh = new THREE.Mesh(blockGoem, blockMaterials.waterMat);
+      this.count = 0;
+      this.range = [0];
+      this.biomes = ["plains"];
+    }
   }
 }
 
@@ -17,12 +80,12 @@ export class BlockMaterials {
     var loader = new THREE.TextureLoader();
 
     this.dirtMat = [
-      "/dist/assets/texture/dirt/dirt.png",
-      "/dist/assets/texture/dirt/dirt.png",
-      "/dist/assets/texture/dirt/dirt.png",
-      "/dist/assets/texture/dirt/dirt.png",
-      "/dist/assets/texture/dirt/dirt.png",
-      "/dist/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
+      "/assets/texture/dirt/dirt.png",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -30,12 +93,12 @@ export class BlockMaterials {
       });
     });
     this.cobblestoneMat = [
-      "/dist/assets/texture/cobblestone/cobblestone.png",
-      "/dist/assets/texture/cobblestone/cobblestone.png",
-      "/dist/assets/texture/cobblestone/cobblestone.png",
-      "/dist/assets/texture/cobblestone/cobblestone.png",
-      "/dist/assets/texture/cobblestone/cobblestone.png",
-      "/dist/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
+      "/assets/texture/cobblestone/cobblestone.png",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -43,12 +106,12 @@ export class BlockMaterials {
       });
     });
     this.oakLogMat = [
-      "/dist/assets/texture/oakLog/side.png",
-      "/dist/assets/texture/oakLog/side.png",
-      "/dist/assets/texture/oakLog/top.jpg",
-      "/dist/assets/texture/oakLog/bottom.jpg",
-      "/dist/assets/texture/oakLog/side.png",
-      "/dist/assets/texture/oakLog/side.png",
+      "/assets/texture/oakLog/side.png",
+      "/assets/texture/oakLog/side.png",
+      "/assets/texture/oakLog/top.jpg",
+      "/assets/texture/oakLog/bottom.jpg",
+      "/assets/texture/oakLog/side.png",
+      "/assets/texture/oakLog/side.png",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -56,12 +119,12 @@ export class BlockMaterials {
       });
     });
     this.oakLeavesMat = [
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
-      "/dist/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
+      "/assets/texture/oakLeaves/oakLeaves.png",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -69,12 +132,12 @@ export class BlockMaterials {
       });
     });
     this.sandMat = [
-      "/dist/assets/texture/sand/sand.png",
-      "/dist/assets/texture/sand/sand.png",
-      "/dist/assets/texture/sand/sand.png",
-      "/dist/assets/texture/sand/sand.png",
-      "/dist/assets/texture/sand/sand.png",
-      "/dist/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
+      "/assets/texture/sand/sand.png",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -82,12 +145,12 @@ export class BlockMaterials {
       });
     });
     this.waterMat = [
-      "/dist/assets/texture/water/water.jpeg",
-      "/dist/assets/texture/water/water.jpeg",
-      "/dist/assets/texture/water/water.jpeg",
-      "/dist/assets/texture/water/water.jpeg",
-      "/dist/assets/texture/water/water.jpeg",
-      "/dist/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
+      "/assets/texture/water/water.jpeg",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -95,12 +158,12 @@ export class BlockMaterials {
       });
     });
     this.grassMat = [
-      "/dist/assets/texture/grass/side.jpg",
-      "/dist/assets/texture/grass/side.jpg",
-      "/dist/assets/texture/grass/top.jpg",
-      "/dist/assets/texture/grass/bottom.jpg",
-      "/dist/assets/texture/grass/side.jpg",
-      "/dist/assets/texture/grass/side.jpg",
+      "/assets/texture/grass/side.jpg",
+      "/assets/texture/grass/side.jpg",
+      "/assets/texture/grass/top.jpg",
+      "/assets/texture/grass/bottom.jpg",
+      "/assets/texture/grass/side.jpg",
+      "/assets/texture/grass/side.jpg",
     ].map((pic) => {
       return new THREE.MeshStandardMaterial({
         map: loader.load(pic),
@@ -109,7 +172,7 @@ export class BlockMaterials {
     });
 
     this.textureOpacity();
-    //this.textureImagesLoader("/dist/assets/texture/grass");
+    //this.textureImagesLoader("/assets/texture/grass");
   }
   textureImagesLoader(fileURL) {
     //joining path of directory
@@ -145,73 +208,56 @@ export class BlockMaterials {
 
 export class Blocks {
   constructor() {
-    var blockGoem = new THREE.BoxGeometry(1, 1, 1);
-    var blockMaterials = new BlockMaterials();
-    var renderDistance = 4;
-    var chunkSize = 10;
-    var depth = 5;
-
-    this.blockGoem = blockGoem;
-    this.blockMaterials = blockMaterials;
-    this.renderDistance = renderDistance;
-    this.chunkSize = chunkSize;
-    this.depth = depth;
-
     this.grass = new Block({
       blockType: "grass",
-      materialArray: blockMaterials.grassMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.grassMat),
-      count: 0,
-      range: [0],
-      biomes: ["plains"],
     });
+
     this.dirt = new Block({
       blockType: "dirt",
-      materialArray: blockMaterials.dirtMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.dirtMat),
-      count: 0,
-      range: [1, 2],
-      biomes: ["plains"],
     });
+
     this.cobblestone = new Block({
       blockType: "cobblestone",
-      materialArray: blockMaterials.cobblestoneMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.cobblestoneMat),
-      count: 0,
-      range: [3, 4],
-      biomes: ["plains", "desert"],
     });
+
     this.oakLog = new Block({
       blockType: "oakLog",
-      materialArray: blockMaterials.oakLogMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.oakLogMat),
-      count: 0,
-      range: [],
-      biomes: ["plains"],
     });
+
     this.oakLeaves = new Block({
       blockType: "oakLeaves",
-      materialArray: blockMaterials.oakLeavesMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.oakLeavesMat),
-      count: 0,
-      range: [],
-      biomes: ["plains"],
     });
+
     this.sand = new Block({
       blockType: "sand",
-      materialArray: blockMaterials.sandMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.sandMat),
-      count: 0,
-      range: [0, 1, 2],
-      biomes: ["desert"],
     });
+
     this.water = new Block({
       blockType: "water",
-      materialArray: blockMaterials.waterMat,
-      mesh: new THREE.Mesh(blockGoem, blockMaterials.waterMat),
-      count: 0,
-      range: [],
-      biomes: ["plains", "desert"],
     });
+  }
+  getBlockByType(blockType) {
+    if (blockType == "grass") {
+      return this.grass;
+    }
+    if (blockType == "dirt") {
+      return this.dirt;
+    }
+    if (blockType == "cobblestone") {
+      return this.cobblestone;
+    }
+
+    if (blockType == "oakLog") {
+      return this.oakLog;
+    }
+    if (blockType == "oakLeaves") {
+      return this.oakLeaves;
+    }
+    if (blockType == "sand") {
+      return this.sand;
+    }
+    if (blockType == "water") {
+      return this.water;
+    }
   }
 }

@@ -1,0 +1,180 @@
+/*!********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/main.css ***!
+  \********************************************************************/
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-btn {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  height: 20px;
+  width: 28px;
+  cursor: pointer;
+}
+
+.menu-btn__burger {
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  width: 28px;
+  height: 3px;
+  background: #fff;
+}
+
+.menu-btn__burger::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-btn__burger::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-btn__burger.open {
+  -webkit-transform: rotate(720deg);
+          transform: rotate(720deg);
+  background: transparent;
+}
+
+.menu-btn__burger.open::before {
+  -webkit-transform: rotate(45deg) translate(5px, 8px);
+          transform: rotate(45deg) translate(5px, 8px);
+}
+
+.menu-btn__burger.open::after {
+  width: 28px;
+  -webkit-transform: rotate(-45deg) translate(3px, -7px);
+          transform: rotate(-45deg) translate(3px, -7px);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vW;
+  opacity: 0.98;
+  visibility: hidden;
+}
+
+.nav.open {
+  visibility: visible;
+}
+
+.nav .menu-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background: #272727;
+  list-style-type: none;
+  padding-right: 1rem;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav .menu-nav.open {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.nav .menu-nav__item {
+  -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav .menu-nav__item.open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.nav .menu-nav__item.active > a {
+  color: #ff652f;
+}
+
+.nav .menu-nav__link {
+  display: inline-block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2rem 0;
+  font-weight: 300;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav .menu-nav__link:hover {
+  color: #ff652f;
+}
+
+.menu-nav__item:nth-child(1) {
+  -webkit-transition-delay: 0.25s;
+          transition-delay: 0.25s;
+}
+
+.menu-nav__item:nth-child(2) {
+  -webkit-transition-delay: 0.35s;
+          transition-delay: 0.35s;
+}
+
+.menu-nav__item:nth-child(3) {
+  -webkit-transition-delay: 0.45s;
+          transition-delay: 0.45s;
+}
+
+.menu-nav__item:nth-child(4) {
+  -webkit-transition-delay: 0.55s;
+          transition-delay: 0.55s;
+}
+
+canvas {
+  position: fixed;
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+body {
+  background: #272727;
+  color: #fff;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1;
+}
+/*# sourceMappingURL=main.css.map */
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFHQTtFQUNJLDhCQUFzQjtVQUNmLHNCQUFDO0VBQ1IsU0FBUTtFQUNYO0FDRkQ7O0FBRUE7RUNMSSxrQkFBVTtFQUNWLFVBQU87RUFDUCxXQUFTO0VBQ1QsU0FBUTtFQUNSLFlBQVc7RUFDWCxXQUFRO0VBNENYO0FEcENEOztBQUVBO0VDTFEsa0JBQVE7RUFDUixRQUFLO0VBQ0wsV0FBVztFQUNYLFdBQVc7RUFDWCxXQUFVO0VBa0NiO0FEMUJMOztBQUVBO0VDTFksV0FBVTtFQUNWLGtCQUFTO0VBQ1QsU0FBTztFQUNQLFdBQVc7RUFDWCxXQUFVO0VGZmxCLGdCQUFZO0VFaUJQO0VET1AsZ0NBQWdDO0FDeEI3Qjs7QUQyQkw7RUNMWSxXQUFRO0VBQ1Isa0JBQVc7RUFDWCxRQUFRO0VBQ1IsV0FBVTtFRnpCbEIsV0FBVTtFRTJCTDtFRE9QLHdDQUF3QztFQ2xDckMsZ0NBNkJTO0FET2Q7O0FBRUE7RUFDRSxpQ0FBaUM7VUN2QzlCLHlCQWdDaUI7RUFDTix1QkFBVztBRFMzQjs7QUMxQ0s7RUFvQ1csb0RBQVc7VUFDWCw0Q0FBOEM7QURVOUQ7O0FDSkE7RUFDSSxXQUFVO0VBQ1Ysc0RBQUs7VUFDRTtBRE9YOztBQUVBO0VDeUNDO0VEdkNDLE1BQU07RUNkUixPQVFVO0VBQ0YsWUFBWTtFQUNmO0VEUUgsa0JBQWtCO0FDbEJwQjs7QURxQkE7RUNQUSxtQkFBbUI7QURTM0I7O0FBRUE7RUNQUSxvQkZ2RWM7RUV3RWQsb0JBQWlCO0VBQ2pCLGFBQWE7RUFDYiw0QkFBNEI7RUZoRWhDLDZCQUFZO01FK0ZYO1VEcEJLLHNCQUFzQjtFQ2hDaEMseUJBd0JjO01BQ0Ysc0JBQXdCO1VBQzNCO0VEVVAsd0JBQXdCO01DUmpCLHFCQUFNO1VBQ0gsdUJBQTRCO0VGeEVwQyxhQUFZO0VFa0ZQO0VERVAsbUJBQW1CO0VDekNyQixxQkE0QmU7RUFLQyxtQkFBVztFQUNkO1VEV0gsNEJBQTRCO0VDN0N0Qyx3Q0FvQ3lCO0VBQ1QsZ0NGekZRO0FDb0d4Qjs7QUNoREE7RUF5Q1ksZ0NBQXFCO1VBQ3JCLHdCQUFlO0FEVzNCOztBQUVBO0VEbEdJLG9DQUFnQztVRThGM0I7RURPUCx3Q0FBd0M7RUMxRDFDLGdDQWdEbUI7QURZbkI7O0FBRUE7RUNOSSxnQ0FBZ0M7VUFDNUIsd0JBQWlDO0FEUXpDOztBQ1RJO0VBQ0k7QURZUjs7QUNiSTtFQUNJLHFCQUFrQjtFQUNyQjtFRGdCSCx5QkFBeUI7RUNsQnZCLGVBQWU7RUFDWCxnQkFBZ0I7RUFDbkI7RURvQkgsZ0NBQWdDO0FFOUhsQzs7QUZpSUE7RUU5SEksY0FBVztBRmdJZjs7QUFFQTtFRTlIQztVRmdJUyx1QkFBdUI7QUUvSGpDOztBRmtJQTtFRS9ISSwrQkFBYTtVQUNiLHVCQUFhO0FGaUlqQjs7QUFFQTtFQUNFLCtCQUErQjtVQUN2Qix1QkFBdUI7QUFDakM7O0FBRUE7RUFDRSwrQkFBK0I7VUFDdkIsdUJBQXVCO0FBQ2pDOztBQUVBO0VBQ0UsZUFBZTtFQUNmLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtFQUNaLE1BQU07RUFDTixPQUFPO0FBQ1Q7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsV0FBVztFQUNYLGFBQWE7RUFDYiw0REFBNEQ7RUFDNUQsY0FBYztBQUNoQjtBQUNBLG1DQUFtQyxDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcmF5dm9sLy4vc3JjL1NDU1MvX2NvbmZpZy5zY3NzIiwid2VicGFjazovL3JheXZvbC8uL3NyYy9jc3MvbWFpbi5jc3MiLCJ3ZWJwYWNrOi8vcmF5dm9sLy4vc3JjL1NDU1MvX21lbnUuc2NzcyIsIndlYnBhY2s6Ly9yYXl2b2wvLi9zcmMvU0NTUy9tYWluLnNjc3MiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/

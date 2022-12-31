@@ -2,33 +2,35 @@ import "../css/main.css";
 import * as THREE from "three";
 import * as sc from "./Scene.js";
 import * as cm from "./Camera.js";
-import * as ct from "./Controls.js";
+
 import * as rd from "./Renderer.js";
 import * as ld from "./Landscape.js";
-import * as BLK from "./Block.js";
 import * as PLR from "./Player.js";
 import * as CANNON from "cannon-es";
+import * as st from "./Storage";
 
 import Stats from "three/examples/jsm/libs/stats.module";
 
 // Three variables
-let scene = sc.scene;
+export let scene = sc.scene;
 let camera = cm.camera;
 let renderer = rd.renderer;
 const clock = new THREE.Clock();
+
 let stats;
 
 // Minecraft variables
-let blocks;
+export let blocks;
 let player;
-let controls;
+
+export let storage = new st.Storage();
 
 // cannon.js variables
 export let world;
 
 // To be synced
-export const meshes = [];
-export const bodies = [];
+export let meshes = [];
+export let bodies = [];
 
 initThree();
 initCannon();
@@ -39,27 +41,28 @@ GameLoop();
 function initThree() {
   stats = new Stats();
   stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  //document.body.appendChild(stats.dom);
+  document.body.appendChild(stats.dom);
 }
 
 function initCannon() {
   // Setup world
   world = new CANNON.World();
   world.gravity.set(0, -9.81, 0);
-
-  // Floor
-  /*const floorShape = new CANNON.Plane();
-  const floorBody = new CANNON.Body({ mass: 0 });
-  floorBody.addShape(floorShape);
-  world.addBody(floorBody);*/
 }
 
 function initMinecraft() {
-  ld.createLandscape(scene);
+  ld.createLandscape();
 
-  blocks = new BLK.Blocks();
+  blocks = new st.BlocksArray({
+    storage: storage,
+    meshes: meshes,
+    bodies: bodies,
+    world: world,
+    scene: scene,
+  });
+
   player = new PLR.Player({ camera: camera });
-  controls = new ct.Controls({ player: player });
+
   player.playerBody.position.set(6, 8, 6);
   bodies.push(player.playerBody);
   world.addBody(player.playerBody);
@@ -93,6 +96,9 @@ function GameLoop() {
   synchronisedBodiesMeshes();
 
   // Render three.js
+  //blocks.renderList.forEach((mesh) => {
+  //  scene.add(mesh);
+  //});
   renderer.render(scene, camera);
 
   stats.update();

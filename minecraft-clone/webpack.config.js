@@ -20,16 +20,20 @@ module.exports = {
   devtool: "inline-source-map",
   entry: {
     app: {
-      import: ["./src/js/index.js", "./src/js/main.js"],
+      import: [
+        "./src/js/index.js",
+        "./src/js/main.js",
+        "./src/js/Responsive.js",
+      ],
       dependOn: "shared",
     },
     minecraft: {
       import: [
         "./src/js/Block.js",
+        "./src/js/Storage.js",
         "./src/js/Landscape.js",
         "./src/js/Plant.js",
         "./src/js/tree.js",
-        "./src/js/Scene.js",
         "./src/js/Controls.js",
         "./src/js/Player.js",
       ],
@@ -38,8 +42,8 @@ module.exports = {
     threeDpack: {
       import: [
         "./src/js/Camera.js",
+        "./src/js/Scene.js",
         "./src/js/Renderer.js",
-        "./src/js/Responsive.js",
       ],
       dependOn: "shared",
     },
@@ -60,7 +64,7 @@ module.exports = {
 
   // Developement Server
   devServer: {
-    static: __dirname,
+    static: PATHS.build,
     hot: false,
     liveReload: true,
     https: true,

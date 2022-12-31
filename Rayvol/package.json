@@ -19,6 +19,7 @@
     "glslify-loader": "^2.0.0",
     "html-loader": "^3.1.2",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
     "raw-loader": "^4.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.73.0",
@@ -28,6 +29,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "three": "^0.141.0"
   }
 }

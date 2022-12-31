@@ -1,5 +1,4 @@
-import * as THREE from 'three';
-
+import * as THREE from "three";
 
 const params = {
   count: 200000,
@@ -9,17 +8,19 @@ const params = {
   spin: 0.5,
   randomAmplitude: 1,
   insideColor: "#ff6030",
-  outsideColor: "#1b3984"
+  outsideColor: "#1b3984",
 };
 
 function randomSign() {
   let sign = Math.random() - 0.5;
-  if (sign >= 0) { return sign = 1 }
-  else { return sign = -1 }
+  if (sign >= 0) {
+    return (sign = 1);
+  } else {
+    return (sign = -1);
+  }
 }
 
 export function generateGalaxy() {
-
   let geometry = null;
   let material = null;
   let points = null;
@@ -31,11 +32,10 @@ export function generateGalaxy() {
   }
 
   const loader = new THREE.TextureLoader();
-  var texture = loader.load('discg.png');
-
+  var texture = loader.load("./assets/img/discg.png");
 
   // Setting up few variables for the main loop
-  const group = new THREE.Group()
+  const group = new THREE.Group();
   geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(params.count * 3);
   const colors = new Float32Array(params.count * 3);
@@ -75,17 +75,21 @@ export function generateGalaxy() {
     //computing the value X Y Z of the given point those équation will modify the shape of our galaxy
     // X and Z should be on a logarithmique spirale where r = a*exp( k * psy)
     //so basicaly we get those equations
-    const a = 2 ;
+    const a = 2;
     const psy = rotation + spinAngle;
     const k = 0.005;
-    const linearRandom = 1
-    positions[i3] = r * ( a * Math.exp(k*psy)*Math.cos(psy) + randomX * linearRandom);
-    positions[i3 + 2] = r * ( a * Math.exp(k*psy)*Math.sin(psy) + randomZ * linearRandom);
+    const linearRandom = 1;
+    positions[i3] =
+      r * (a * Math.exp(k * psy) * Math.cos(psy) + randomX * linearRandom);
+    positions[i3 + 2] =
+      r * (a * Math.exp(k * psy) * Math.sin(psy) + randomZ * linearRandom);
 
     //Y axis should be on a flat gaussian shape equation y= A * (1 / (theta * Math.sqrt(2 * Math.PI)))*exp( -(r*r)/(theta*theta))
     const theta = 5;
-    const A = 30; 
-    const expo = (1 / (theta * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * (r * r) / (theta * theta))
+    const A = 30;
+    const expo =
+      (1 / (theta * Math.sqrt(2 * Math.PI))) *
+      Math.exp((-0.5 * (r * r)) / (theta * theta));
     sign = randomSign();
     positions[i3 + 1] = sign * A * expo * randomY + randomY;
   }
@@ -93,8 +97,6 @@ export function generateGalaxy() {
   // Branches
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-
 
   material = new THREE.PointsMaterial({
     transparent: true,
@@ -104,15 +106,13 @@ export function generateGalaxy() {
     sizeAttenuation: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    vertexColors: true
+    vertexColors: true,
   });
   points = new THREE.Points(geometry, material);
   group.add(points);
 
   console.log("generateGalaxy");
   return group;
-};
-
-export function galaxyRender(){
-  
 }
+
+export function galaxyRender() {}
