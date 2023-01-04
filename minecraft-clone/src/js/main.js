@@ -61,9 +61,8 @@ function initMinecraft() {
     scene: scene,
   });
 
-  player = new PLR.Player({ camera: camera });
+  player = new PLR.Player({ camera: camera, position: { x: 3, y: 2, z: 3 } });
 
-  player.playerBody.position.set(6, 8, 6);
   bodies.push(player.playerBody);
   world.addBody(player.playerBody);
   meshes.push(player.mesh);

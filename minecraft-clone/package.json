@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "webpack serve --open",
-    "server": "node ./server/server.js",
-    "build": "webpack"
+    "start": "webpack server --open",
+    "server": "node ./dist/server.js",
+    "build": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development",
+    "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
+    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +25,9 @@
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@babel/preset-env": "^7.19.4",
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
@@ -32,8 +35,12 @@
     "mini-css-extract-plugin": "^2.6.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.6",
     "three": "^0.145.0",
-    "webpack": "^5.74.0",
-    "webpack-dev-server": "^4.11.1"
+    "url-loader": "^4.1.1",
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.3",
+    "webpack-node-externals": "^3.0.0"
   }
 }

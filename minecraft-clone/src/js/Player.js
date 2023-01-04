@@ -9,7 +9,7 @@ export class Player {
   plrMat = new THREE.MeshBasicMaterial();
   mesh = new THREE.Mesh(this.plrGeom, this.plrMat);
 
-  constructor({ camera, mesh }) {
+  constructor({ camera, mesh, position }) {
     this.actionMap = {
       leftClick: false,
       rightClick: false,
@@ -26,14 +26,16 @@ export class Player {
 
     this.camera = camera;
     this.controls = new ct.Controls({ player: this });
-
+    this.position = new THREE.Vector3(position.x, position.y, position.z);
     this.mesh = new THREE.Mesh(this.plrGeom, this.plrMat);
-    this.mass = 1;
-    this.movementSpeed = 4;
+    this.mass = 70;
+    this.movementSpeed = 4.5;
     this.jumpForce = 5;
     this.playerShape = new CANNON.Sphere(1.5);
     this.playerBody = new CANNON.Body({ mass: this.mass });
     this.playerBody.addShape(this.playerShape);
+    this.playerBody.position.copy(this.position);
+    this.camera.position.copy(this.position);
 
     //this.updatePlayer();
   }

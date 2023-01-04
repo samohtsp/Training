@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
@@ -16,8 +18,7 @@ module.exports = {
       path: false,
     },
   },
-  mode: "development",
-  devtool: "inline-source-map",
+
   entry: {
     app: {
       import: [
@@ -53,23 +54,29 @@ module.exports = {
   output: {
     filename: "js/[name].bundle.js",
     path: PATHS.build,
-    clean: true,
+    //clean: true,
     publicPath: "/",
     //assetModuleFilename:'[file]'
   },
 
   optimization: {
     runtimeChunk: "single",
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
 
+  devtool: "inline-source-map",
+  target: "web",
+
   // Developement Server
-  devServer: {
-    static: PATHS.build,
-    hot: false,
-    liveReload: true,
-    https: true,
-    port: 9000,
-  },
+  // devServer: {
+  //   static: PATHS.build,
+  //   hot: false,
+  //   watchFiles: ["src/js/*.js"],
+  //   liveReload: true,
+  //   https: true,
+  //   port: 9000,
+  // },
 
   //Plugins
   plugins: [
@@ -78,12 +85,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Minecraft clone",
       filename: "./index.html",
+      excludeChunks: ["server"],
     }),
   ],
 
   //Loaders
   module: {
     rules: [
+      {
+        // Transpiles ES6-8 into ES5
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
       //html
       {
         test: /\.html$/i,

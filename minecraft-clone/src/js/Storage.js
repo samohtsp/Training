@@ -7,13 +7,7 @@ import * as CANNON from "cannon-es";
 
 export class Storage {
   constructor() {
-    this.blocks = [
-      {
-        key: nanoid(),
-        position: { x: 1, y: 1, z: 1 },
-        type: "water",
-      },
-    ];
+    this.blocks = [];
     this.initStore();
   }
 

@@ -2,6 +2,10 @@ import _ from "lodash";
 import "../css/main.css";
 
 require.context("../assets", true, /\.(png|svg|jpg|jpeg|gif)$/);
+// Needed for Hot Module Replacement
+if (typeof module.hot !== "undefined") {
+  module.hot.accept(); // eslint-disable-line no-undef
+}
 
 function canvas() {
   const canvas = document.createElement("canvas");
