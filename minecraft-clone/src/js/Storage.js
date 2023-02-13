@@ -1,5 +1,4 @@
 import "../css/main.css";
-import * as THREE from "three";
 
 import * as BLK from "./Block";
 import { nanoid } from "nanoid";
@@ -19,7 +18,7 @@ export class Storage {
       type: typ,
     });
   }
-  removeBlock() {}
+
   setTexture() {}
   saveWorld() {}
   resetWorld() {}
@@ -38,8 +37,92 @@ export class BlocksArray {
 
     this.initBlocks();
   }
+
   initBlocks() {
     this.useStorage();
+  }
+
+  filterByPosition({ blocksArray, position }) {
+    //console.log("filter By Position");
+    let newArray = blocksArray.filter((block) => {
+      if (
+        block.position.x === position.x &&
+        block.position.y === position.y &&
+        block.position.z === position.z
+      ) {
+        // console.log(Object.values(block));
+        return false;
+      } else {
+        return true;
+      }
+    });
+    return newArray;
+  }
+  findByPosition({ blocksArray, position }) {
+    let object = blocksArray.find((block) => {
+      if (
+        block.position.x === position.x &&
+        block.position.y === position.y &&
+        block.position.z === position.z
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    // console.log("obj " + Object.values(object));
+    return object;
+  }
+  addBlock({ type, position }) {
+    console.log("blocksArray ADD");
+    // console.log("position 2 " + Object.values(position));
+    let block = new BLK.Block({ blockType: type });
+    let mesh = block.mesh;
+    mesh.position.set(position.x, position.y, position.z);
+    const blockShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5));
+    let blockBody = new CANNON.Body({ mass: 0 });
+    blockBody.addShape(blockShape);
+    blockBody.position.set(position.x, position.y, position.z);
+    mesh.isBlock = true;
+
+    this.meshes.push(mesh);
+    this.scene.add(mesh);
+    this.bodies.push(blockBody);
+    this.world.addBody(blockBody);
+    return;
+  }
+
+  removeBlock({ block, position }) {
+    console.log("blocksArray RM");
+
+    let blockBody = this.findByPosition({
+      blocksArray: this.bodies,
+      position: position,
+    });
+
+    let blockMesh = this.scene.getObjectById(block.object.id);
+
+    this.meshes = this.filterByPosition({
+      blocksArray: this.meshes,
+      position: position,
+    });
+
+    this.bodies = this.filterByPosition({
+      blocksArray: this.bodies,
+      position: position,
+    });
+
+    this.storage.blocks = this.filterByPosition({
+      blocksArray: this.storage.blocks,
+      position: position,
+    });
+
+    this.world.removeBody(blockBody);
+    this.scene.remove(blockMesh);
+    // blockMesh.geometry.dispose();
+    // blockMesh.material.dispose();
+    // blockMesh = undefined;
+    return;
   }
   useStorage() {
     //console.log("storage length " + this.storage.blocks.length);
@@ -54,7 +137,7 @@ export class BlocksArray {
         storeBlock.position.z
       );
       const blockShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5));
-      const blockBody = new CANNON.Body({ mass: 0 });
+      let blockBody = new CANNON.Body({ mass: 0 });
       blockBody.addShape(blockShape);
 
       blockBody.position.set(
@@ -62,7 +145,7 @@ export class BlocksArray {
         storeBlock.position.y,
         storeBlock.position.z
       );
-
+      mesh.isBlock = true;
       this.meshes.push(mesh);
       this.bodies.push(blockBody);
       this.world.addBody(blockBody);

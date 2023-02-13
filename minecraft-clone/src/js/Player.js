@@ -45,35 +45,47 @@ export class Player {
     this.useAction();
   }
   updatePosition() {
-    //console.log('player pos update =', this.mesh.position);
     this.camera.position.copy(this.mesh.position);
+  }
+  getIntersectObj() {
+    this.controls.raycaster.setFromCamera(this.controls.mouse, this.camera);
+    let intersects = this.controls.raycaster.intersectObjects(
+      sc.scene.children
+    );
+    if (intersects.length > 0) {
+      return this.objectIsBlock(intersects[0]);
+    } else {
+      return undefined;
+    }
+  }
+  objectIsBlock(object) {
+    try {
+      if (object.distance <= 6 && object.object.isBlock) {
+        return object;
+      }
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
   }
   useAction() {
     if (this.actionMap["jump"] && Math.abs(this.playerBody.velocity.y) < 0.05) {
       this.playerBody.velocity.set(0, this.jumpForce, 0);
     }
     if (this.actionMap["rightClick"]) {
-      this.controls.raycaster.setFromCamera(this.controls.mouse, this.camera);
-      let intersects = this.controls.raycaster.intersectObjects(
-        sc.scene.children
-      );
-      if (intersects.length > 0) {
-        this.placeBlock(intersects[0], "cobblestone");
+      let intersectObj = this.getIntersectObj();
+      if (intersectObj !== undefined) {
+        this.placeBlock(intersectObj, "cobblestone");
       }
-      mn.blocks.useStorage();
     }
     if (this.actionMap["leftClick"]) {
-      this.controls.raycaster.setFromCamera(this.controls.mouse, this.camera);
-      let intersects = this.controls.raycaster.intersectObjects(
-        sc.scene.children
-      );
-
-      if (intersects.length > 0) {
-        this.removeBlock(intersects[0]);
+      let intersectObj = this.getIntersectObj();
+      if (intersectObj !== undefined) {
+        this.removeBlock(intersectObj);
       }
     }
-    const direction = new THREE.Vector3();
 
+    let direction = new THREE.Vector3();
     const frontVector = new THREE.Vector3(
       0,
       0,
@@ -91,6 +103,7 @@ export class Player {
     direction.addVectors(frontVector, sideVector);
     direction.normalize();
     direction.multiplyScalar(this.movementSpeed);
+    //this.controls.fpv.getDirection(direction);
     direction.applyEuler(this.camera.rotation);
 
     this.playerBody.velocity.set(
@@ -100,16 +113,22 @@ export class Player {
     );
   }
   placeBlock(block, blockType) {
-    let position = block.object.position;
-    let normal = block.face.normal;
-
-    position.addVectors(position, normal);
-    mn.storage.addBlock({
+    let position = new THREE.Vector3();
+    position.addVectors(block.object.position, block.face.normal);
+    mn.blocks.addBlock({
       type: blockType,
       position: position,
     });
+    this.actionMap["rightClick"] = false;
+    return;
   }
+
   removeBlock(block) {
-    mn.storage.removeBlock();
+    mn.blocks.removeBlock({
+      block: block,
+      position: block.object.position,
+    });
+    this.actionMap["leftClick"] = false;
+    return;
   }
 }

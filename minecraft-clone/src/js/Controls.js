@@ -38,23 +38,40 @@ export class Controls {
     });
     document.addEventListener("mousedown", (event) => {
       //console.log(event);
-      this.fpv.lock();
-      this.handleMouseDown(event);
+      if (this.fpv.isLocked) {
+        this.handleMouseDown(event);
+      } else {
+        this.fpv.lock();
+      }
     });
     document.addEventListener("mouseup", (event) => {
       //console.log(event);
-      this.fpv.lock();
+
       this.handleMouseUp(event);
     });
     this.fpv.addEventListener("lock", () => {
       //menu.style.display = "none";
       //console.log("locked");
     });
-
     this.fpv.addEventListener("unlock", () => {
       //menu.style.display = "block";
       //console.log("unlocked");
     });
+
+    // if (navigator.keyboard) {
+    //   const keyboard = navigator.keyboard;
+    //   keyboard.getLayoutMap().then((keyboardLayoutMap) => {
+    //     //const upKey = keyboardLayoutMap.get("KeyW");
+    //     keyboardLayoutMap.forEach((key) => {
+    //       console.log(key);
+    //     });
+    //     console.log(Object.keys(keyboardLayoutMap));
+    //     console.log(Object.values(keyboardLayoutMap));
+    //     window.alert(`Press ${upKey} to move up.`);
+    //   });
+    // } else {
+    //   // Do something else.
+    // }
   }
 
   actionByKey(key) {

@@ -39,9 +39,9 @@ renderInfo();
 GameLoop();
 
 function initThree() {
-  stats = new Stats();
-  stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.body.appendChild(stats.dom);
+  // stats = new Stats();
+  // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+  // document.body.appendChild(stats.dom);
 }
 
 function initCannon() {
@@ -84,7 +84,7 @@ function synchronisedBodiesMeshes() {
 }
 
 function GameLoop() {
-  stats.begin();
+  // stats.begin();
   const deltaTime = clock.getDelta();
 
   //update game
@@ -94,13 +94,9 @@ function GameLoop() {
   world.fixedStep();
   synchronisedBodiesMeshes();
 
-  // Render three.js
-  //blocks.renderList.forEach((mesh) => {
-  //  scene.add(mesh);
-  //});
   renderer.render(scene, camera);
 
-  stats.update();
-  stats.end();
+  // stats.update();
+  // stats.end();
   requestAnimationFrame(GameLoop);
 }
