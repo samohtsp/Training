@@ -19,36 +19,22 @@ module.exports = {
   },
 
   entry: {
-    app: {
-      import: [
-        "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
-        "./src/js/index.js",
-        "./src/js/main.js",
-        "./src/js/menu.js",
-        "./src/js/Responsive.js",
-      ],
-      dependOn: "shared",
-    },
-    minecraft: {
-      import: [
-        "./src/js/Block.js",
-        "./src/js/Storage.js",
-        "./src/js/Landscape.js",
-        "./src/js/Plant.js",
-        "./src/js/tree.js",
-        "./src/js/Controls.js",
-        "./src/js/Player.js",
-      ],
-      dependOn: "shared",
-    },
-    threeDpack: {
-      import: [
-        "./src/js/Camera.js",
-        "./src/js/Scene.js",
-        "./src/js/Renderer.js",
-      ],
-      dependOn: "shared",
-    },
+    app: [
+      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
+      "./src/js/index.js",
+      "./src/js/main.js",
+      "./src/js/Responsive.js",
+    ],
+    project: [
+      "./src/js/Storage.js",
+      "./src/js/Controls.js",
+      "./src/js/Player.js",
+    ],
+    threeDpack: [
+      "./src/js/Camera.js",
+      "./src/js/Scene.js",
+      "./src/js/Renderer.js",
+    ],
     shared: ["lodash", "three", "cannon-es"],
   },
 
@@ -82,8 +68,8 @@ module.exports = {
     new NodePolyfillPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      title: "Minecraft clone",
-      filename: "./index.html",
+      title: "Game Controls",
+      filename: "index.html",
       excludeChunks: ["server"],
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -107,24 +93,20 @@ module.exports = {
       //css
       {
         test: /\.css$/i,
-        generator: {
-          filename: (content) => {
-            return content.filename.replace("src/", "");
-          },
-        },
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
 
       //images
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-        exclude: /node_modules/,
-        generator: {
-          filename: (content) => {
-            return content.filename.replace("src/", "");
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+            },
           },
-        },
+        ],
       },
 
       //fonts

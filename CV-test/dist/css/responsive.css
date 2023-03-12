@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  aside {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+  }
+  .asideWrapper {
+    top: 0;
+    left: 0;
+  }
+  .wrapper {
+    width: 80vw;
+    left: 20vw;
+    height: 100vh;
+  }
+} /*# sourceMappingURL=responsive.css.map */

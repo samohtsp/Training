@@ -1,0 +1,71 @@
+$cvgreen: #4caf50;
+$white: #ffffff;
+$headercolour: #4caf50;
+
+// define fonts
+$sans: sans-serif;
+$headerfont: "Times New Roman", serif;
+
+// define sizes
+$bigsize: 2em;
+$smallsize: 1em;
+
+// define background colors
+$backgroundcolour: $white;
+$leftmargincolour: #4caf50;
+// Variables
+$primary-color: #008080;
+$secondary-color: #515151;
+$skill-label-color: #333333;
+$skill-icon-bg-color: #eeeeee;
+$skill-icon-color: $primary-color;
+$header-colour: #88c6d1;
+$aside-bg-colour: #e6f4f1;
+$text-colour: #333333;
+
+// Variables pour les sections
+$section-padding: 2rem;
+$section-margin-bottom: 2rem;
+
+// style generaux
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin transition-ease {
+  transition: all 0.5s ease-in-out;
+}
+
+@function set-text-color($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+@mixin media-sma {
+  @media screen and (max-width: 767px) {
+    // ajustement
+    @content;
+  }
+}
+@mixin media-md {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    // ajustement
+    @content;
+  }
+}
+@mixin media-lg {
+  @media screen and (min-width: 1024px) and (max-width: 1599px) {
+    // ajustement
+    @content;
+  }
+}
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}

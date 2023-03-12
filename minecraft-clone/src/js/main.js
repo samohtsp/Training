@@ -1,4 +1,4 @@
-import "../css/main.css";
+import "../pages/css/main.css";
 import * as THREE from "three";
 import * as sc from "./Scene.js";
 import * as cm from "./Camera.js";

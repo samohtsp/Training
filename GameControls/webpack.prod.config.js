@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
@@ -21,21 +22,15 @@ module.exports = {
   entry: {
     app: {
       import: [
-        "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
         "./src/js/index.js",
         "./src/js/main.js",
-        "./src/js/menu.js",
         "./src/js/Responsive.js",
       ],
       dependOn: "shared",
     },
-    minecraft: {
+    project: {
       import: [
-        "./src/js/Block.js",
         "./src/js/Storage.js",
-        "./src/js/Landscape.js",
-        "./src/js/Plant.js",
-        "./src/js/tree.js",
         "./src/js/Controls.js",
         "./src/js/Player.js",
       ],
@@ -62,8 +57,10 @@ module.exports = {
 
   optimization: {
     runtimeChunk: "single",
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
-  mode: "development",
+
   devtool: "inline-source-map",
   target: "web",
 
@@ -82,17 +79,23 @@ module.exports = {
     new NodePolyfillPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      title: "Minecraft clone",
-      filename: "./index.html",
+      title: "Game Controls",
+      filename: "index.html",
       excludeChunks: ["server"],
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
 
   //Loaders
   module: {
     rules: [
+      {
+        // Transpiles ES6-8 into ES5
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

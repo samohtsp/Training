@@ -1,0 +1,392 @@
+% a mashup of hipstercv, friggeri and twenty cv
+% https://www.latextemplates.com/template/twenty-seconds-resumecv
+% https://www.latextemplates.com/template/friggeri-resume-cv
+
+\documentclass[lighthipster]{simplehipstercv}
+% available options are: darkhipster, lighthipster, pastel, allblack, grey, verylight, withoutsidebar
+% withoutsidebar
+\usepackage[utf8]{inputenc}
+\usepackage[default]{raleway}
+\usepackage[margin=0\paperwidth, a4paper]{geometry}
+
+
+%------------------------------------------------------------------ Variablen
+
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.23\paperwidth}
+\setlength{\rightcolwidth}{0.75\paperwidth}
+
+%------------------------------------------------------------------
+\title{New Simple CV}
+\author{\LaTeX{} Thomas}
+\date{Septembre 2022}
+
+\pagestyle{empty}
+\begin{document}
+
+
+\thispagestyle{empty}
+%-------------------------------------------------------------
+
+\section*{Start}
+
+\simpleheader{headercolour}{Thomas}{Richard}{Developpeur Fullstack Node}{white}
+
+
+%------------------------------------------------
+
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{5em}
+
+\setlength{\columnsep}{0.05\paperwidth}
+\columnratio{0.23}[0.75]
+\begin{paracol}{2}
+\hbadness5000
+%\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
+
+\paracolbackgroundoptions
+% 0.9,0.9,0.9 -- 0.8,0.8,0.8
+
+\footnotesize
+{\setasidefontcolour
+\flushleft
+
+%%\begin{adjustwidth}{0.02\paperwidth}{}
+%Thomas Richard\\
+%Nationalité: Français\\
+%Né 11/12/1995\\
+%Vehiculé
+%\end{adjustwidth}
+%\bigskip
+%\vspace{4em}
+
+\bg{cvgreen}{white}{A propos de moi}\\[0.5em]
+{\footnotesize
+\begin{adjustwidth}{0.02\paperwidth}{}
+    Je suis un passionné de sciences et de technologies.\\
+    Pour cette raison, je souhaite développer mes compétences au sein de différents projets en tant que développeur Fullstack.\\
+    En dehors du travail je suis toujours partant pour différentes activités listées ci-après!
+    \end{adjustwidth}
+    }
+\bigskip
+\vspace{4em}
+
+\bg{cvgreen}{white}{Passe-temps}\\[0.5em]
+\begin{adjustwidth}{0.02\paperwidth}{}
+\texttt{Sciences}~/~\texttt{Technologies} \\
+\texttt{Ski}~/~\texttt{Trek}~/~\texttt{Escalade}\\
+\texttt{Jeux plateau}~/~\texttt{Jeux videos}
+\end{adjustwidth}
+\bigskip
+\vspace{4em}
+
+\bg{cvgreen}{white}{Social}\\[0.5em]
+\infobubble{\faGlobe}{cvgreen}{white}{\href{https://minecraft.rayvol.net}{\scriptsize rayvol.net}}\\
+\infobubble{\faGithub}{cvgreen}{white}{\href{https://github.com/samohtsp/Training}{\scriptsize Training}}\\
+\infobubble{\faLinkedin}{cvgreen}{white}{\href{https://linkedin.com/in/thomas-richard-dev}{\scriptsize LinkedIn}}\\
+\infobubble{\faAt}{cvgreen}{white}{\scriptsize thomas.richard@rayvol.net}\\
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+}
+%-----------------------------------------------------------
+\switchcolumn
+
+
+\begin{minipage}[t]{0.3\textwidth}
+\section*{Stack}
+\begin{tabular}{l}
+      \bg{skilllabelcolour}{iconcolour}{VsCode} \\
+      \bg{skilllabelcolour}{iconcolour}{Git} \\
+      \bg{skilllabelcolour}{iconcolour}{Linux} \\
+      \bg{skilllabelcolour}{iconcolour}{WebPack}\\
+      %\bg{skilllabelcolour}{iconcolour}{Angular} \\
+      \bg{skilllabelcolour}{iconcolour}{Node.js} \\
+      \bg{skilllabelcolour}{iconcolour}{PostgreSQL} \\
+     
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.35\textwidth}
+\section*{Programming}
+\begin{tabular}{r @{\hspace{0.5em}}l}
+     \bg{skilllabelcolour}{iconcolour}{Javascript} & Avancé\\
+     \bg{skilllabelcolour}{iconcolour}{html, SASS (css)} & Intermédiaire \\
+     \bg{skilllabelcolour}{iconcolour}{C\#} & Intermédiaire\\
+     \bg{skilllabelcolour}{iconcolour}{C/C++} & Intermédiaire\\
+     \bg{skilllabelcolour}{iconcolour}{SQL} & Débutant \\
+     
+     \bg{skilllabelcolour}{iconcolour}{python} & Intermédiaire \\
+\end{tabular}
+\end{minipage}
+\vspace{1em}
+
+
+\begin{minipage}[t]{0.3\textwidth}
+\section*{Soft skills}
+\begin{tabular}{>{\footnotesize}p{0.9\textwidth}}
+    \textbf{Adaptation}\\
+    \textbf{Communication}\\
+    \textbf{Attentif}\\
+    \textbf{Investi}\\
+\end{tabular}
+\bigskip
+\end{minipage}
+\begin{minipage}[t]{0.35\textwidth}
+\section*{Langages}
+\begin{tabular}{l | ll}
+\textbf{English} & C1 & {\phantom{x}\footnotesize niveau professionnel} \\
+\textbf{Français} & C2 & {\phantom{x}\footnotesize langue maternelle} \\
+\textbf{Español} & B1 & {\phantom{x}\footnotesize niveau lycée}
+\end{tabular}
+\bigskip
+\end{minipage}
+
+\begin{minipage}[t]{0.65\textwidth}
+\section*{Formations et Diplomes}
+\begin{tabular}{r p{0.9\textwidth}}
+\vspace{1em}
+    \cvdegree{2018}{Master 2 Physique}{Aix-Marseille Universite}{Physique fondamentale}{Préparation à l'agrégation et la recherche.}
+    
+    \cvdegree{2017}{Master 1 Physique}{Aix-Marseille Universite}{Physique fondamentale}{C/C++(11): Simulation de sytème planétaire et de système quantique, puis améliorations de ces projets via optimisation et multi-threading.} \\
+    \cvdegree{2013-2016}{Licence de Physique-chimie}{Aix-Marseille Universite}{Physique fondamentale}{Python 2 ans: SciPy, numpy, matplotlib sur Linux (Debian) modélisation de fluide et mécanique - C/C++(11) 2 ans: gcc, gnuplot sur Linux(Debian), analyse de données et premières approches de la compilation.} 
+\end{tabular}
+\end{minipage}
+\bigskip
+
+\begin{minipage}[t]{0.65\textwidth}
+\section*{Experiences Professionnelles}
+\vspace{10pt}
+
+\begin{tabular}{r| p{0.9\textwidth}}
+\cvevent{2019--2021}{Fullstack développeur}{SII}{Aix-en-Provence\color{cvred}}{
+\vspace{8pt}
+Consultant à Airbus Helicopters - Flight Perfo\\
+Consultant à la Marine Nationale (CEPA) - ZEPHYR\\
+Consultant à Airbus Helicopters - PTU}
+\end{tabular}
+\vspace{8pt}
+
+\begin{tabular}{r| p{0.9\textwidth}}
+\cvevent{2018--2019}{Professeur}{Education nationale}{Chalon-sur-Saône\color{cvred}}{
+Professeur de physique et chimie en collège\\
+Professeur de physique et chimie en lycée}
+\end{tabular}
+\vspace{8pt}
+
+\begin{tabular}{r| p{0.9\textwidth}}
+\cvevent{\hspace{23.2pt}2017}{Stage développeur}{CPPM}{Marseille\color{cvred}}{
+Développeur logiciel d'analyse physique}
+\end{tabular}
+\vspace{8pt}
+
+\begin{tabular}{r| p{0.9\textwidth}}
+\cvevent{\hspace{0.2pt}2015--2016}{Professeur}{AMU}{Marseille \color{cvred}}{
+Professeur en Travaux Dirigés}
+\end{tabular}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	Second Page
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{0.65\textwidth}
+\vspace{1em}
+\section*{Experiences}
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{Webapp Minecraft}{ Fullstack developpeur}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\vspace{3pt}
+\textbf{Minecraft-clone:} application Node qui reproduit un minecraft simplifié dans le navigateur.\\
+Ce projet m'a permis de créer un environnement de travail complexe.\\
+Environnement nécessaire, pour la maintenabilite, la production comme le développement.\\
+\end{adjustwidth}
+
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}              &\textbf{Librairies:}\\    
+-FrameWork: Nodejs                          &-Threejs : 3D web Renderer \\
+-Serveur: Express.js                        & -Cannon-es: Moteur Physique pour le web\\
+-ES6 transpilation: Babel                   &\textbf{Base de données:}\\
+-Linter : ESlint                            &-MySQL\\
+-Bundler: Webpack 5                         & \textbf{Tests: } \\
+-Versionning: github                        &-Jest \\
+-Uglify code: terser-webpack-plugin         & \\
+-Builds: Dev et Prod serveur                & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{Galaxy background}{ Fullstack developpeur}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{Galaxy:} application Node dans laquelle on peut naviguer dans une galaxie de particules.\\
+Dans ce projet, j'ai cherché à maîtriser les bases de la librairie Threejs pour une application from scratch.
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}              & \textbf{Librairies:}\\    
+-FrameWork: Nodejs                          & -Threejs : 3D web Renderer \\
+-Bundler: Webpack 5                         & \\
+-Versionning: github                        & \\
+-Build: Dev serveur                         & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{NFT Marketplace}{ Fullstack developpeur}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{NFT-Marketplace:} application Node/nextjs, dans laquelle on peut vendre/acheter/burn/mint des NFTs.\\
+Dans ce projet, j'ai cherché à appliquer ce que j'ai appris au travers du tutoriel "crypto Zombie" de la fondation Ethereum.\\
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}              &\textbf{Librairies:}    \\     
+-FrameWork: Nodejs                          &-Threejs : 3D web Renderer \\ 
+-Bundler: Webpack 5                         &-HardHat\\ 
+-Linter : ESlint                            & \\
+-Versionning: github                        & \\
+-Build: Dev serveur                         & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{Portfolio}{ Frontend}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{Portfolio:} Site web basique html/SASS\\
+L'objectif de ce projet était de coder et conserver un ensemble de concepts liés au SASS
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}      & \\
+-langages: html/SASS JavaScript     &  \\    
+-Compiler: SASS compiler            & \\
+-Serveur: liveServer                & \\
+-Versionning: github                & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par 
+\vspace{3pt}
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{Flight Perfo}{ Fullstack developpeur}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{Flight Perfo:} application qui permet le calcul de perfomances d'un hélicoptère dans l'objectif de remplacer les manuels de vols\\
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}          & Certification Process: DO-330\\
+-Framework: Qt                          & Ticketing: Mantis\\    
+-Frontend: Javascript Vanilla, html/css & \textbf{Tests:} \\
+-Backend: calculateur en C++            & coco(code coverage) \\
+-Versionning: tortoise SVN              & test unitaire sous Qt framework\\
+\end{tabular}
+\vspace{3pt}
+
+
+Les inputs du client étaient faites en C\#\\
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Test:}         & Certification Process: DO-330\\
+-Framework: .Net 4.5                    & Ticketing: Mantis\\ 
+-Frontend: windows Form                 & \textbf{Tests:} \\
+-Backend: calculateur en C\#            & Tests: visual studio 2019 testing tool\\
+-Versionning: tortoise SVN              & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{ZEPHYR}{ Fullstack developpeur}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{ZEPHYR:} Application pour pilote d'essai\\
+Application qui aide les pilotes d'essai à déterminer comment et quand ils peuvent atterrir ou décoller, avec un hélicoptère, d'un navire\\
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}          & Certification Process: DO-330\\
+-Framework: Qt                          & Ticketing: Mantis\\    
+-Frontend: Javascript Vanilla, html/css & \textbf{Base de donees:} \\
+-Backend: calculateur en C++            & SQLite \\
+-Versionning: tortoise SVN              & -Support pour l'édition de spécifications\\\\
+\end{tabular}
+\textbf{Lead du projet :}  communication avec nos clients, division des tâches pour notre équipe, estimations des charges de travail.
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+
+
+\begin{tabular}{r p{0.9\textwidth}}
+\persoevent{}{PTU}{ Developpement de Tests}{}{
+\begin{adjustwidth}{0.01\rightcolwidth}{}
+\textbf{PTU:} unitary test plan\\
+Développement de tests unitaires en C dans l'objectif de vérifier le code source embarqué des hélicoptères.\\
+\end{adjustwidth}
+\vspace{3pt}
+\begin{tabular}{ p{0.4\textwidth} | p{0.4\textwidth}}
+\textbf{Environnement de Dev:}          & -Edition/correction de spécifications\\ 
+-Framework: RTT                         & -Certification Process: DO-178.b\\
+-Relecture des spécifications via DOORS & -Ticketing: Mantis\\  
+-Vérification du code source sous SCADE & \\
+-Versionning: tortoise SVN              & \\
+\end{tabular}
+}
+\end{tabular}
+\vspace{3pt}
+ \par\rule{\textwidth}{0.3pt} 
+ \par
+\vspace{3pt}
+\end{minipage}
+
+
+\vfill{} % Whitespace before final footer
+\vspace{6.2em}
+%----------------------------------------------------------------------------------------
+%	FINAL FOOTER
+%----------------------------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\begin{minipage}[t]{0.9\rightcolwidth}
+\begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+{\small Thomas Richard 
+\icon{\faPhone}{cvgreen}{} +337 69 57 86 67\\
+\icon{\faAt}{cvgreen}{} {thomas.richard@rayvol.net}
+}
+\end{center}
+\end{minipage}
+
+\end{paracol}
+\end{document}

@@ -1,4 +1,4 @@
-import "../css/main.css";
+import "../pages/css/main.css";
 
 import * as BLK from "./Block";
 import { nanoid } from "nanoid";

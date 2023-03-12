@@ -1,0 +1,169 @@
+@import "config";
+@import "menu";
+@import "responsive_sma";
+@import "responsive_md";
+@import "responsive_lg";
+@import "responsive_xl";
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  color: $secondary-color;
+  background-color: #f2f2f2;
+}
+.asideWrapper {
+  background-color: #333;
+  // Transition pour animer le déplacement du bandeau
+  transition: top 0.5s ease-in-out;
+  h1 {
+    color: #ffffff;
+    font-size: 40px;
+    justify-self: center;
+    align-self: center;
+  }
+  h2 {
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  p {
+    color: white;
+    font-size: 1.2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  #header,
+  #about,
+  #hobbies {
+    color: #ffffff;
+  }
+  .header-title {
+    font-size: 24px;
+    p {
+      font-size: 24px;
+    }
+  }
+  .link-container {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    ul {
+      list-style: none;
+      li {
+        a {
+          text-decoration: none;
+          color: white;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          font-weight: bold;
+          .header-icon {
+            color: white;
+            transition: all 0.5s ease-in-out;
+          }
+          &:hover {
+            .header-icon {
+              transform: rotate(360deg) scale(1.5);
+            }
+          }
+        }
+      }
+    }
+  }
+  .about-container {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
+  .hobbies-container {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    p {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    ul {
+      list-style: none;
+      li {
+        color: white;
+      }
+    }
+  }
+}
+
+// Wrapper
+.wrapper {
+  h2 {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+
+  // Gauche
+  .left {
+    .stack,
+    .soft-skills {
+      ul {
+        list-style: none;
+        li {
+          span {
+            padding: 5px 10px;
+            border: 1px solid $skill-label-color;
+          }
+          .VsCode {
+            background-color: #007acc;
+          }
+          .Node\.js {
+            background-color: #338e38;
+          }
+          .React {
+            background-color: #b9e3f78a;
+          }
+          .Git {
+            background-color: #f34f29;
+          }
+          .Linux {
+            background-color: #fbc91e;
+          }
+          .WebPack {
+            background-color: #8dd6f9;
+          }
+        }
+      }
+    }
+
+    .soft-skills {
+      span {
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid $skill-label-color;
+        border-radius: 20px;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  // Droite
+  .right {
+    h2 {
+      color: $primary-color;
+    }
+    .programming,
+    .languages {
+      table {
+        td,
+        th {
+          padding: 0.5rem;
+          text-align: left;
+        }
+
+        tr:nth-child(even) {
+          background-color: $skill-icon-bg-color;
+        }
+
+        td:first-of-type {
+          font-weight: bold;
+        }
+
+        td:last-of-type {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

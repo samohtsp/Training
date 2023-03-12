@@ -1,0 +1,951 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-btn {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  height: 20px;
+  width: 28px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn__burger {
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  width: 28px;
+  height: 3px;
+  background: #88c6d1;
+}
+.menu-btn__burger::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 28px;
+  height: 3px;
+  background: #88c6d1;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn__burger::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  height: 3px;
+  background: #88c6d1;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn__burger.open {
+  transform: rotate(720deg);
+  background: transparent;
+}
+.menu-btn__burger.open::before {
+  transform: rotate(45deg) translate(5px, 8px);
+}
+.menu-btn__burger.open::after {
+  width: 28px;
+  transform: rotate(-45deg) translate(3px, -7px);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: 0.98;
+  visibility: hidden;
+}
+.nav.open {
+  visibility: visible;
+}
+.nav .menu-nav {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background: #008080;
+  list-style-type: none;
+  padding-right: 1rem;
+  transform: translateY(-100%);
+  transition: all 0.5s ease-in-out;
+}
+.nav .menu-nav a {
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  color: whitesmoke;
+}
+.nav .menu-nav.open {
+  transform: translateY(0);
+}
+.nav .menu-nav__item {
+  transform: translateX(100vw);
+  transition: all 0.5s ease-in-out;
+}
+.nav .menu-nav__item.open {
+  transform: translateX(0);
+}
+.nav .menu-nav__item.active > a {
+  color: #333333;
+}
+.nav .menu-nav__link {
+  display: inline-block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2rem 0;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+.nav .menu-nav__link:hover {
+  color: #515151;
+}
+
+.menu-nav__item:nth-child(1) {
+  transition-delay: 0.25s;
+}
+
+.menu-nav__item:nth-child(2) {
+  transition-delay: 0.35s;
+}
+
+.menu-nav__item:nth-child(3) {
+  transition-delay: 0.45s;
+}
+
+.menu-nav__item:nth-child(4) {
+  transition-delay: 0.55s;
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    display: flex;
+    flex-direction: column; /* définir la direction en colonne */
+    align-items: center;
+    justify-content: center;
+  }
+  .asideWrapper {
+    order: 1; /* afficher en premier */
+    padding: 1rem;
+  }
+  .asideWrapper #link,
+  .asideWrapper #about,
+  .asideWrapper #hobbies {
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title h1 {
+    align-self: center;
+  }
+  .asideWrapper .header-title h2 {
+    align-self: center;
+  }
+  .asideWrapper .link-container {
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .link-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .asideWrapper .link-container ul li {
+    font-size: 1.2em;
+    width: calc(50% - 50px);
+  }
+  .asideWrapper .link-container ul li .header-icon {
+    font-size: 25px;
+    margin: 10px;
+  }
+  .asideWrapper .link-container ul li a {
+    font-size: 20px;
+    align-self: center;
+  }
+  .asideWrapper .about-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container p {
+    font-size: 1.2em;
+  }
+  .asideWrapper .hobbies-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .asideWrapper .hobbies-container ul li {
+    margin-left: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .wrapper {
+    order: 2; /* afficher en deuxième */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  .wrapper h2 {
+    text-align: left;
+    align-self: flex-start;
+  }
+  .wrapper .left {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .left .stack,
+  .wrapper .left .soft-skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .wrapper .left .stack ul,
+  .wrapper .left .soft-skills ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .left .stack ul li,
+  .wrapper .left .soft-skills ul li {
+    display: flex;
+    align-items: center;
+  }
+  .wrapper .left .stack ul li .skill-icon,
+  .wrapper .left .soft-skills ul li .skill-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 10%;
+  }
+  .wrapper .left .stack ul li .skill-icon i,
+  .wrapper .left .soft-skills ul li .skill-icon i {
+    font-size: 1.8em;
+  }
+  .wrapper .right {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .right .programming,
+  .wrapper .right .languages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 1rem;
+  }
+  .wrapper .right .programming h2,
+  .wrapper .right .languages h2 {
+    width: 30%;
+  }
+  .wrapper .right .programming table,
+  .wrapper .right .languages table {
+    width: 60%;
+  }
+  .wrapper .right .programming table td,
+  .wrapper .right .programming table th,
+  .wrapper .right .languages table td,
+  .wrapper .right .languages table th {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .wrapper .right .programming table td:first-of-type,
+  .wrapper .right .languages table td:first-of-type {
+    font-weight: bold;
+  }
+  .wrapper .right .programming table td:last-of-type,
+  .wrapper .right .languages table td:last-of-type {
+    text-align: right;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  .asideWrapper {
+    width: 40%;
+  }
+  .asideWrapper #link,
+  .asideWrapper #about,
+  .asideWrapper #hobbies {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title h1 {
+    align-self: center;
+  }
+  .asideWrapper .header-title h2 {
+    align-self: center;
+  }
+  .asideWrapper .link-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .link-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .asideWrapper .link-container ul li {
+    align-self: center;
+    justify-self: center;
+    font-size: 1.2em;
+  }
+  .asideWrapper .link-container ul li .header-icon {
+    font-size: 25px;
+    margin: 10px;
+  }
+  .asideWrapper .link-container ul li a {
+    font-size: 20px;
+    align-self: center;
+  }
+  .asideWrapper .about-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container p {
+    font-size: 1.2em;
+  }
+  .asideWrapper .hobbies-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .asideWrapper .hobbies-container ul li {
+    margin-left: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .wrapper {
+    width: 60vw;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .wrapper h2 {
+    text-align: left;
+    align-self: flex-start;
+  }
+  .wrapper .left {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .wrapper .left .stack,
+  .wrapper .left .soft-skills {
+    display: flex;
+    flex-direction: row;
+  }
+  .wrapper .left .stack ul,
+  .wrapper .left .soft-skills ul {
+    padding-top: 2em;
+    padding-left: 1em;
+    list-style: none;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .left .stack ul li,
+  .wrapper .left .soft-skills ul li {
+    display: flex;
+    align-items: center;
+  }
+  .wrapper .left .stack ul li .skill-icon,
+  .wrapper .left .soft-skills ul li .skill-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 10%;
+  }
+  .wrapper .left .stack ul li .skill-icon i,
+  .wrapper .left .soft-skills ul li .skill-icon i {
+    font-size: 1.8em;
+  }
+  .wrapper .right {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .right .programming,
+  .wrapper .right .languages {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  .wrapper .right .programming h2,
+  .wrapper .right .languages h2 {
+    width: 30%;
+  }
+  .wrapper .right .programming table,
+  .wrapper .right .languages table {
+    width: 60%;
+    padding-top: 2em;
+  }
+  .wrapper .right .programming table td,
+  .wrapper .right .programming table th,
+  .wrapper .right .languages table td,
+  .wrapper .right .languages table th {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .wrapper .right .programming table td:first-of-type,
+  .wrapper .right .languages table td:first-of-type {
+    font-weight: bold;
+  }
+  .wrapper .right .programming table td:last-of-type,
+  .wrapper .right .languages table td:last-of-type {
+    text-align: right;
+  }
+  .wrapper .right .languages {
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1599px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  .asideWrapper {
+    width: 40%;
+  }
+  .asideWrapper #link,
+  .asideWrapper #about,
+  .asideWrapper #hobbies {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title h1 {
+    align-self: center;
+  }
+  .asideWrapper .header-title h2 {
+    align-self: center;
+  }
+  .asideWrapper .link-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .link-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .asideWrapper .link-container ul li {
+    align-self: center;
+    justify-self: center;
+    font-size: 1.2em;
+  }
+  .asideWrapper .link-container ul li .header-icon {
+    font-size: 25px;
+    margin: 10px;
+  }
+  .asideWrapper .link-container ul li a {
+    font-size: 20px;
+    align-self: center;
+  }
+  .asideWrapper .about-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container p {
+    font-size: 1.2em;
+  }
+  .asideWrapper .hobbies-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .asideWrapper .hobbies-container ul li {
+    margin-left: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .wrapper {
+    width: 60vw;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .wrapper h2 {
+    text-align: left;
+    align-self: flex-start;
+  }
+  .wrapper .left {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .wrapper .left .stack,
+  .wrapper .left .soft-skills {
+    display: flex;
+    flex-direction: row;
+  }
+  .wrapper .left .stack ul,
+  .wrapper .left .soft-skills ul {
+    padding-top: 2em;
+    padding-left: 1em;
+    list-style: none;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .left .stack ul li,
+  .wrapper .left .soft-skills ul li {
+    display: flex;
+    align-items: center;
+  }
+  .wrapper .left .stack ul li .skill-icon,
+  .wrapper .left .soft-skills ul li .skill-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 10%;
+  }
+  .wrapper .left .stack ul li .skill-icon i,
+  .wrapper .left .soft-skills ul li .skill-icon i {
+    font-size: 1.8em;
+  }
+  .wrapper .right {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .right .programming,
+  .wrapper .right .languages {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  .wrapper .right .programming h2,
+  .wrapper .right .languages h2 {
+    width: 30%;
+  }
+  .wrapper .right .programming table,
+  .wrapper .right .languages table {
+    width: 60%;
+    padding-top: 2em;
+  }
+  .wrapper .right .programming table td,
+  .wrapper .right .programming table th,
+  .wrapper .right .languages table td,
+  .wrapper .right .languages table th {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .wrapper .right .programming table td:first-of-type,
+  .wrapper .right .languages table td:first-of-type {
+    font-weight: bold;
+  }
+  .wrapper .right .programming table td:last-of-type,
+  .wrapper .right .languages table td:last-of-type {
+    text-align: right;
+  }
+}
+@media screen and (min-width: 1600px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  .asideWrapper {
+    height: auto;
+    width: 30%;
+  }
+  .asideWrapper #link,
+  .asideWrapper #about,
+  .asideWrapper #hobbies {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .asideWrapper .header-title h1 {
+    align-self: center;
+  }
+  .asideWrapper .header-title h2 {
+    align-self: center;
+  }
+  .asideWrapper .link-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .link-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .asideWrapper .link-container ul li {
+    align-self: center;
+    justify-self: center;
+    font-size: 1.2em;
+  }
+  .asideWrapper .link-container ul li .header-icon {
+    font-size: 25px;
+    margin: 10px;
+  }
+  .asideWrapper .link-container ul li a {
+    font-size: 20px;
+    align-self: center;
+  }
+  .asideWrapper .about-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .asideWrapper .hobbies-container p {
+    font-size: 1.2em;
+  }
+  .asideWrapper .hobbies-container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .asideWrapper .hobbies-container ul li {
+    margin-left: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wrapper h2 {
+    text-align: left;
+    align-self: flex-start;
+  }
+  .wrapper .left {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .wrapper .left .stack,
+  .wrapper .left .soft-skills {
+    display: flex;
+    flex-direction: row;
+  }
+  .wrapper .left .stack ul,
+  .wrapper .left .soft-skills ul {
+    padding-top: 2em;
+    padding-left: 1em;
+    list-style: none;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .left .stack ul li,
+  .wrapper .left .soft-skills ul li {
+    display: flex;
+    align-items: center;
+  }
+  .wrapper .left .stack ul li .skill-icon,
+  .wrapper .left .soft-skills ul li .skill-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 10%;
+  }
+  .wrapper .left .stack ul li .skill-icon i,
+  .wrapper .left .soft-skills ul li .skill-icon i {
+    font-size: 1.8em;
+  }
+  .wrapper .right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .wrapper .right .programming,
+  .wrapper .right .languages {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  .wrapper .right .programming h2,
+  .wrapper .right .languages h2 {
+    width: 30%;
+  }
+  .wrapper .right .programming table,
+  .wrapper .right .languages table {
+    width: 60%;
+    padding-top: 2em;
+  }
+  .wrapper .right .programming table td,
+  .wrapper .right .programming table th,
+  .wrapper .right .languages table td,
+  .wrapper .right .languages table th {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .wrapper .right .programming table td:first-of-type,
+  .wrapper .right .languages table td:first-of-type {
+    font-weight: bold;
+  }
+  .wrapper .right .programming table td:last-of-type,
+  .wrapper .right .languages table td:last-of-type {
+    text-align: right;
+  }
+}
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  color: #515151;
+  background-color: #f2f2f2;
+}
+
+.asideWrapper {
+  background-color: #333;
+  transition: top 0.5s ease-in-out;
+}
+.asideWrapper h1 {
+  color: #ffffff;
+  font-size: 40px;
+  justify-self: center;
+  align-self: center;
+}
+.asideWrapper h2 {
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.asideWrapper p {
+  color: white;
+  font-size: 1.2em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.asideWrapper #header,
+.asideWrapper #about,
+.asideWrapper #hobbies {
+  color: #ffffff;
+}
+.asideWrapper .header-title {
+  font-size: 24px;
+}
+.asideWrapper .header-title p {
+  font-size: 24px;
+}
+.asideWrapper .link-container {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+.asideWrapper .link-container ul {
+  list-style: none;
+}
+.asideWrapper .link-container ul li a {
+  text-decoration: none;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+.asideWrapper .link-container ul li a .header-icon {
+  color: white;
+  transition: all 0.5s ease-in-out;
+}
+.asideWrapper .link-container ul li a:hover .header-icon {
+  transform: rotate(360deg) scale(1.5);
+}
+.asideWrapper .about-container {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+.asideWrapper .hobbies-container {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+.asideWrapper .hobbies-container p {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.asideWrapper .hobbies-container ul {
+  list-style: none;
+}
+.asideWrapper .hobbies-container ul li {
+  color: white;
+}
+
+.wrapper h2 {
+  font-size: 1.5rem;
+  color: #008080;
+}
+.wrapper .left .stack ul,
+.wrapper .left .soft-skills ul {
+  list-style: none;
+}
+.wrapper .left .stack ul li span,
+.wrapper .left .soft-skills ul li span {
+  padding: 5px 10px;
+  border: 1px solid #333333;
+}
+.wrapper .left .stack ul li .VsCode,
+.wrapper .left .soft-skills ul li .VsCode {
+  background-color: #007acc;
+}
+.wrapper .left .stack ul li .Node\.js,
+.wrapper .left .soft-skills ul li .Node\.js {
+  background-color: #338e38;
+}
+.wrapper .left .stack ul li .React,
+.wrapper .left .soft-skills ul li .React {
+  background-color: rgba(185, 227, 247, 0.5411764706);
+}
+.wrapper .left .stack ul li .Git,
+.wrapper .left .soft-skills ul li .Git {
+  background-color: #f34f29;
+}
+.wrapper .left .stack ul li .Linux,
+.wrapper .left .soft-skills ul li .Linux {
+  background-color: #fbc91e;
+}
+.wrapper .left .stack ul li .WebPack,
+.wrapper .left .soft-skills ul li .WebPack {
+  background-color: #8dd6f9;
+}
+.wrapper .left .soft-skills span {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #333333;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.wrapper .right h2 {
+  color: #008080;
+}
+.wrapper .right .programming table td,
+.wrapper .right .programming table th,
+.wrapper .right .languages table td,
+.wrapper .right .languages table th {
+  padding: 0.5rem;
+  text-align: left;
+}
+.wrapper .right .programming table tr:nth-child(even),
+.wrapper .right .languages table tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+.wrapper .right .programming table td:first-of-type,
+.wrapper .right .languages table td:first-of-type {
+  font-weight: bold;
+}
+.wrapper .right .programming table td:last-of-type,
+.wrapper .right .languages table td:last-of-type {
+  text-align: right;
+}/*# sourceMappingURL=style.css.map */

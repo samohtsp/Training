@@ -6,7 +6,7 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 
 const app = express(),
   DIST_DIR = __dirname,
-  HTML_FILE = path.join(DIST_DIR, "../dist/index.html"),
+  HTML_FILE = path.join(DIST_DIR, "index.html"),
   config = require("../../webpack.dev.config.js"),
   compiler = webpack(config);
 
@@ -18,6 +18,7 @@ app.use(
   })
 );
 app.use(webpackHotMiddleware(compiler));
+
 app.get("*", (req, res, next) => {
   compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
     if (err) {
@@ -27,17 +28,6 @@ app.get("*", (req, res, next) => {
     res.send(result);
     res.end();
   });
-});
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/pages/home.html");
-});
-
-app.get("home.rayvol.net", (req, res) => {
-  res.sendFile(__dirname + "/pages/home.html");
-});
-
-app.get("minecraft.rayvol.net", (req, res) => {
-  res.sendFile(__dirname + "/pages/minecraft.html");
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -1,4 +1,4 @@
-import "../pages/css/main.css";
+import "../css/main.css";
 import * as THREE from "three";
 
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
@@ -29,6 +29,7 @@ export class Controls {
     this.raycaster = new THREE.Raycaster();
     this.initControls();
   }
+  initActionMap() {}
   initControls() {
     document.addEventListener("keydown", (event) => {
       this.handleKeyDown(event);
@@ -58,20 +59,20 @@ export class Controls {
       //console.log("unlocked");
     });
 
-    // if (navigator.keyboard) {
-    //   const keyboard = navigator.keyboard;
-    //   keyboard.getLayoutMap().then((keyboardLayoutMap) => {
-    //     //const upKey = keyboardLayoutMap.get("KeyW");
-    //     keyboardLayoutMap.forEach((key) => {
-    //       console.log(key);
-    //     });
-    //     console.log(Object.keys(keyboardLayoutMap));
-    //     console.log(Object.values(keyboardLayoutMap));
-    //     window.alert(`Press ${upKey} to move up.`);
-    //   });
-    // } else {
-    //   // Do something else.
-    // }
+    if (navigator.keyboard) {
+      const keyboard = navigator.keyboard;
+      keyboard.getLayoutMap().then((keyboardLayoutMap) => {
+        //const upKey = keyboardLayoutMap.get("KeyW");
+        keyboardLayoutMap.forEach((key) => {
+          console.log(key);
+        });
+        console.log(Object.keys(keyboardLayoutMap));
+        console.log(Object.values(keyboardLayoutMap));
+        window.alert(`Press ${upKey} to move up.`);
+      });
+    } else {
+      // Do something else.
+    }
   }
 
   actionByKey(key) {

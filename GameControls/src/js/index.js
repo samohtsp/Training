@@ -1,5 +1,5 @@
 import _ from "lodash";
-import "../pages/css/main.css";
+import "../css/main.css";
 
 require.context("../assets", true, /\.(png|svg|jpg|jpeg|gif)$/);
 // Needed for Hot Module Replacement
